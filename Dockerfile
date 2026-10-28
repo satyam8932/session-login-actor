@@ -1,4 +1,8 @@
-FROM apify/actor-node-playwright-chrome:24 AS builder
+# Base image is pinned to a specific Playwright version (24 = Node 24, 1.64.1 =
+# Playwright) so the pre-baked browser always matches the "playwright" dependency
+# below. This keeps the image light (no extra browser download) and immune to the
+# floating ":24" tag drifting to a Playwright version with a different browser.
+FROM apify/actor-node-playwright-chrome:24-1.64.1 AS builder
 
 COPY --chown=myuser:myuser package*.json ./
 
@@ -8,7 +12,7 @@ COPY --chown=myuser:myuser . ./
 
 RUN npm run build
 
-FROM apify/actor-node-playwright-chrome:24
+FROM apify/actor-node-playwright-chrome:24-1.64.1
 
 COPY --chown=myuser:myuser package*.json ./
 

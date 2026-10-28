@@ -83,10 +83,25 @@ folder — useful for fixing selectors if the TJB/GHL login markup differs from 
 
 ## Deploy
 
+- **Actor ID:** `Zm9TxJxDL6xOI23aM` (Apify account `tom.beatty-owner`)
+- **Console:** https://console.apify.com/actors/Zm9TxJxDL6xOI23aM
+
 ```bash
-APIFY_TOKEN=your_token apify push --force
-apify builds add-tag -b BUILD_ID -t latest
+apify login -t <APIFY_TOKEN>
+apify push          # builds on the platform and tags the build as latest
 ```
+
+### Base image / Playwright version (important)
+
+The Dockerfile pins the base image to a **version-specific tag** that matches the `playwright`
+dependency: `apify/actor-node-playwright-chrome:24-1.64.1` with `"playwright": "1.64.1"`.
+
+Do not loosen the base image to the floating `:24` tag. That tag drifts to whatever Playwright
+version is latest, and its pre-baked browser then no longer matches a pinned `playwright`, which
+fails at launch with `Executable doesn't exist at /pw-browsers/chromium_headless_shell-<rev>`.
+Keeping both pinned to the same version reuses the image's pre-baked browser — no extra download,
+smaller image, and no drift. (The appointment-booking-actor still uses the floating `:24` tag and
+has the same latent issue; bump it the same way whenever it is next rebuilt.)
 
 ## How it works
 
