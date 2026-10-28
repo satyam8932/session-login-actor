@@ -1,0 +1,26 @@
+# Dependencies & build output
+node_modules/
+dist/
+tsconfig.tsbuildinfo
+
+# Apify local storage — holds INPUT.json (email/password/TOTP secret),
+# captured sessions, and debug screenshots of the logged-in account.
+storage/
+apify_storage/
+
+# Credentials & captured sessions — NEVER commit these
+INPUT.json
+SESSION.json
+*.session.json
+storage-state.json
+.env
+.env.*
+
+# Debug artifacts (screenshots / HTML dumps of the logged-in account)
+debug-*
+step-*
+error-*
+*-html.html
+
+# OS cruft
+.DS_Store

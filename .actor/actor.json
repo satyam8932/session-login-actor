@@ -1,0 +1,18 @@
+{
+    "$schema": "https://apify.com/schemas/v1/actor.ide.json",
+    "actorSpecification": 1,
+    "name": "session-login-actor",
+    "title": "GHL Session Login & Capture - TJB Digital",
+    "description": "Logs into app.tjbdigitalservices.com with email, password and a TOTP 2FA secret, then captures the full browser session (cookies + localStorage) so it can be reused by the appointment-booking actor without a manual login.",
+    "version": "1.0",
+    "meta": {
+        "templateId": "ts-start",
+        "generatedBy": "Claude Code with Claude Opus 4.8"
+    },
+    "inputSchema": "./input_schema.json",
+    "dockerfile": "../Dockerfile",
+    "defaultRunOptions": {
+        "memoryMbytes": 2048,
+        "timeoutSecs": 600
+    }
+}

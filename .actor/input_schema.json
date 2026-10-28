@@ -1,0 +1,43 @@
+{
+    "$schema": "https://apify.com/schemas/v1/input.ide.json",
+    "title": "GHL Session Login Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "email": {
+            "title": "Email",
+            "type": "string",
+            "description": "Login email for app.tjbdigitalservices.com",
+            "editor": "textfield"
+        },
+        "password": {
+            "title": "Password",
+            "type": "string",
+            "description": "Login password. Stored encrypted on Apify.",
+            "editor": "textfield",
+            "isSecret": true
+        },
+        "encryptedKey": {
+            "title": "TOTP Secret (encryptedKey)",
+            "type": "string",
+            "description": "The 2FA authenticator secret used to generate TOTP codes. Accepts a base32 secret (e.g. 'JBSWY3DPEHPK3PXP') or a full otpauth:// URI. Stored encrypted on Apify.",
+            "editor": "textfield",
+            "isSecret": true
+        },
+        "loginUrl": {
+            "title": "Login URL",
+            "type": "string",
+            "description": "Login page URL. Defaults to https://app.tjbdigitalservices.com",
+            "editor": "textfield",
+            "default": "https://app.tjbdigitalservices.com"
+        },
+        "headless": {
+            "title": "Headless",
+            "type": "boolean",
+            "description": "Run the browser headless. Set false for a local run to watch the browser (also honours the HEADLESS=false env var).",
+            "editor": "checkbox",
+            "default": true
+        }
+    },
+    "required": ["email", "password", "encryptedKey"]
+}
